@@ -29,7 +29,7 @@ namespace PierresTreats
             .AddDbContext<PierresTreatsContext>(options => options
             .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
-            services.AddIdentity<LibrarianUser, IdentityRole>()
+            services.AddIdentity<WebsiteUser, IdentityRole>()
             .AddEntityFrameworkStores<PierresTreatsContext>()
             .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>

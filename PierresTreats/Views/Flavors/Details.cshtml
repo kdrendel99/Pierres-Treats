@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresTreats.Models.Flavor
+
+<h2>Flavor Details:</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model => model.FlavorName)</h3>
+
+ @if (@Model.JoinEntities.Count == 0)
+{
+  <p>This Flavor has no treats assigned to it! Add one below.</p>
+}
+else
+{
+  <h4>This Flavor can be found in the following Treats:</h4>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+    {
+      <li>@join.Flavor.FlavorName</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p> 

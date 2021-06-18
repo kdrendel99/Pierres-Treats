@@ -1,8 +1,28 @@
-﻿@{
+﻿@using System.Security.Claims
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Pierre's Treats Bakery!</h1>
+    <p>We offer a diverse array of flavors and pastries to satisfy <em>any</em> craving!</a>.</p>
 </div>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+     <div class="text-center">
+        <h3>Hello @User.Identity.Name!</h3>
+    </div>
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+        <input type="submit" class="btn btn-default" value="Log out" />
+    }
+}
+    
+
+<!-- <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+<p>@Html.ActionLink("Log in", "Login", "Account")</p> -->
+<p>@Html.ActionLink("Flavors", "Index", "Flavors")</p>
+<!-- <p>@Html.ActionLink("Authors", "Index", "Authors")</p> -->

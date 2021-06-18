@@ -12,7 +12,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-     <div class="text-center">
+    <div class="text-center">
         <h3>Hello @User.Identity.Name!</h3>
     </div>
     @using (Html.BeginForm("LogOff", "Account"))
@@ -22,7 +22,5 @@
 }
     
 
-<!-- <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
-<p>@Html.ActionLink("Log in", "Login", "Account")</p> -->
+<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
 <p>@Html.ActionLink("Flavors", "Index", "Flavors")</p>
-<!-- <p>@Html.ActionLink("Authors", "Index", "Authors")</p> -->

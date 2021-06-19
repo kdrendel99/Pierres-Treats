@@ -6,7 +6,7 @@
 
 <h2>Pastry Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.TreatName): @Html.DisplayFor(model => model.TreatName)</h3>
+<h3>Pastry name: @Html.DisplayFor(model => model.TreatName)</h3>
 
 @if(@Model.JoinEntities.Count == 0)
 {
@@ -14,7 +14,7 @@
 }
 else
 {
-  <h4>Flavors this treat belongs to:</h4>
+  <h4>Flavors in this treat:</h4>
   <ul>
   @foreach(var join in Model.JoinEntities)
   {

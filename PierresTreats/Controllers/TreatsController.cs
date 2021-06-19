@@ -11,12 +11,15 @@ using System.Security.Claims;
 
 namespace PierresTreats.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresTreatsContext _db;
+    private readonly UserManager<WebsiteUser> _userManager;
 
-    public TreatsController(PierresTreatsContext db)
+    public TreatsController(UserManager<WebsiteUser> userManager,PierresTreatsContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 

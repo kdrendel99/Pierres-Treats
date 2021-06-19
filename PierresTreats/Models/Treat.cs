@@ -10,7 +10,8 @@ namespace PierresTreats.Models
     }
     public int TreatId { get; set; }
     public string TreatName { get; set; }
-    // public virtual WebsiteUser { get; set; }
-    public virtual ICollection<FlavorTreat> JoinEntities {get; set;}
+
+    // public virtual WebsiteUser User { get; set; }
+    public virtual ICollection<FlavorTreat> JoinEntities { get; set; }
   }
 }

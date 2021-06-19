@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PierresTreats.Models;
 
-namespace PierresTreats.Controllers
+namespace PierresTreats.solution.Controllers
 {
     public class HomeController : Controller
     {

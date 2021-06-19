@@ -32,6 +32,7 @@ namespace PierresTreats
             services.AddIdentity<WebsiteUser, IdentityRole>()
             .AddEntityFrameworkStores<PierresTreatsContext>()
             .AddDefaultTokenProviders();
+            
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;

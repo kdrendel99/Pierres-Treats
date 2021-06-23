@@ -182,7 +182,7 @@ namespace PierresTreats.Migrations
 
                     b.HasIndex("TreatId");
 
-                    b.ToTable("FlavorTreat");
+                    b.ToTable("FlavorTreats");
                 });
 
             modelBuilder.Entity("PierresTreats.Models.Treat", b =>

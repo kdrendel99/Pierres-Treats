@@ -30,6 +30,14 @@ namespace PierresTreats.Controllers
       var userFlavors = _db.Flavors.ToList();
       return View(userFlavors);
     }
+    // public async Task<ActionResult> Index()
+    // {
+    //   List<Flavor> allFlavors = _db.Flavors.OrderBy(e => e.FlavorName).ToList();
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   ViewBag.UserFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
+    //   return View(allFlavors);
+    // }
 
     public ActionResult Create()
     {
@@ -47,7 +55,7 @@ namespace PierresTreats.Controllers
       _db.SaveChanges();
       if (TreatId != 0)
       {
-        _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+        _db.FlavorTreats.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -55,21 +63,17 @@ namespace PierresTreats.Controllers
 
     public ActionResult Edit(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "LastName");
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      // ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "FlavorName");
       return View(thisFlavor);
     }
 
     [HttpPost]
     public ActionResult Edit(Flavor flavor, int TreatId)
     {
-      if (TreatId != 0)
-      {
-        _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
-      }
       _db.Entry(flavor).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
     public ActionResult Details(int id)
@@ -83,7 +87,7 @@ namespace PierresTreats.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
 
@@ -91,17 +95,8 @@ namespace PierresTreats.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
     Console.WriteLine(id);
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      _db.Flavors.Remove(thisFlavor);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    [HttpPost]
-    public ActionResult DeleteTreat(int joinId)
-    {
-      var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
-      _db.FlavorTreat.Remove(joinEntry);
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      _db.Remove(thisFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
